@@ -1,0 +1,9 @@
+docker/.env
+simulator/.env
+consumer/.env
+docker/dags/.env
+
+# DBT artifacts and secrets
+dbt/spotify_dbt/target/
+dbt/spotify_dbt/dbt_packages/
+dbt/spotify_dbt/logs/
