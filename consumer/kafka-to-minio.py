@@ -19,8 +19,8 @@ KAFKA_BOOTSTRAP_SERVER = os.getenv("KAFKA_BOOTSTRAP_SERVER")
 KAFKA_GROUP_ID = os.getenv("KAFKA_GROUP_ID")
 BATCH_SIZE = int(os.getenv("BATCH_SIZE", 10))  # Number of records to combine to create a single JSON file before uploading to MinIO
 
-print("Bootstrap server:", KAFKA_BOOTSTRAP_SERVER)
-print("Kafka topic:", KAFKA_TOPIC)
+# print("Bootstrap server:", KAFKA_BOOTSTRAP_SERVER)
+# print("Kafka topic:", KAFKA_TOPIC)
 
 # ---------- Connect to MinIO ----------
 s3 = boto3.client(   # MinIO acts exactly like AWS S3, so we can use the same boto3 library to interact with it

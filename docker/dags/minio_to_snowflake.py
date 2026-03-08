@@ -32,7 +32,7 @@ SNOWFLAKE_SCHEMA = os.getenv("SNOWFLAKE_SCHEMA")
 SNOWFLAKE_TABLE = os.getenv("SNOWFLAKE_TABLE")
 
 # ----- Local File Path -----
-LOCAL_TEMP_PATH = os.getenv("LOCAL_TEMP_PATH", "/tmp/spotify_raw.json")
+LOCAL_TEMP_PATH = os.getenv("LOCAL_TEMP_PATH", "/tmp/spotify_raw.json") # Used to store the extracted events from MinIO before loading to Snowflake. It acts as a temporary staging area for the data.
 
 # ------------------------------------------------------
 #               PYTHON TASK FUNCTIONS
@@ -118,7 +118,7 @@ def load_raw_to_snowflake(**context):
     """
     cur.execute(create_table_sql)
 
-    # Create temporary staging table
+    # Creating temporary staging table
     staging_table = f"{SNOWFLAKE_TABLE}_STAGING"
     create_staging_sql = f"""
     CREATE TEMPORARY TABLE {staging_table} (
