@@ -6,6 +6,8 @@
 [![Snowflake](https://img.shields.io/badge/Snowflake-Cloud%20DWH-29B5E8.svg)](https://www.snowflake.com/)
 [![dbt](https://img.shields.io/badge/dbt-1.5+-FF694B.svg)](https://www.getdbt.com/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](https://www.docker.com/)
+[![CI](https://github.com/kunalvijay42/Spotify-Realtime-Data-Pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/kunalvijay42/Spotify-Realtime-Data-Pipeline/actions/workflows/ci.yml)
+[![CD](https://github.com/kunalvijay42/Spotify-Realtime-Data-Pipeline/actions/workflows/cd.yml/badge.svg)](https://github.com/kunalvijay42/Spotify-Realtime-Data-Pipeline/actions/workflows/cd.yml)
 
 ## 📌 Project Overview
 
@@ -100,3 +102,14 @@ cd Spotify-Realtime-Data-Pipeline
 docker-compose up -d
 ```
 ---
+
+## CI/CD Pipeline
+
+- **CI (`.github/workflows/ci.yml`)** runs on every push and pull request:
+  - Installs Python dependencies
+  - Runs `ruff` linting on Python modules
+  - Validates Python syntax with `compileall`
+
+- **CD (`.github/workflows/cd.yml`)** runs on pushes to `main` (and manual trigger):
+  - Packages project files into a versioned `.tar.gz` artifact
+  - Uploads the artifact to GitHub Actions for download

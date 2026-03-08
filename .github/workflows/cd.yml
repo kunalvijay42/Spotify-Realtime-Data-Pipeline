@@ -1,0 +1,33 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create release artifact
+        run: |
+          mkdir -p dist
+          tar \
+            --exclude=".git" \
+            --exclude="venv" \
+            --exclude="docker/logs" \
+            --exclude="dbt/logs" \
+            -czf "dist/spotify-realtime-data-pipeline-${{ github.sha }}.tar.gz" \
+            README.md requirements.txt consumer simulator docker dbt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotify-realtime-data-pipeline-${{ github.sha }}
+          path: dist/spotify-realtime-data-pipeline-${{ github.sha }}.tar.gz
+          if-no-files-found: error
