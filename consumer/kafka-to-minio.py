@@ -4,7 +4,7 @@ from kafka import KafkaConsumer
 import boto3
 from dotenv import load_dotenv
 from datetime import datetime, timezone
-from pathlib import Path
+# from pathlib import Path
 
 # ---------- Load environment variables ----------
 load_dotenv()
